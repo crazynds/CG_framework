@@ -17,6 +17,7 @@
 
 #define Y_CANVAS_CRESCE_PARA_CIMA 1
 
+extern int screenWidth, screenHeight;
 
 class CV //classe Canvas2D
 {
