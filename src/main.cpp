@@ -19,17 +19,41 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <algorithm>
 
 #include "gl_canvas2d.h"
 
-int screenWidth = 1024, screenHeight = 820;
+int screenWidth = 320, screenHeight = 320;
 
-int opcao = 50;     
-int mouseX, mouseY; 
+int mouseX, mouseY;
+int lastMouseX = -1, lastMouseY = -1;
 
+unsigned long long int step = 0;
+
+int windowX, windowY;
 
 void render()
 {
+   step += 1;
+
+   if (lastMouseX > 0 && lastMouseY > 0)
+   {
+      int xDiff = lastMouseX - screenWidth / 2;
+      lastMouseX = -1;
+      int yDiff = screenHeight / 2 - lastMouseY;
+      lastMouseY = -1;
+      printf("DIFF: %d %d\n", xDiff, yDiff);
+      windowX += xDiff / 3;
+      windowY += yDiff / 3;
+      windowX = std::min(windowX, 1920 - screenWidth);
+      if (windowX < 0)
+         windowX = 0;
+      windowY = std::min(windowY, 1024 - screenHeight);
+      if (windowY < 0)
+         windowY = 0;
+   }
+   glutPositionWindow(windowX, windowY);
+
    // Clear screen
    CV::color(WHITE);
    CV::rectFill(0,0, screenWidth, screenHeight);
@@ -48,6 +72,8 @@ void render()
 
 void keyboard(int key)
 {
+   if (key == 27)
+      exit(0);
    printf("\nTecla: %d", key);
 }
 void keyboardUp(int key)
@@ -58,6 +84,8 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
    mouseX = x; // guarda as coordenadas do mouse para exibir dentro da render()
    mouseY = y;
+   lastMouseX = x;
+   lastMouseY = y;
 
    printf("\nmouse %d %d %d %d %d %d", button, state, wheel, direction, x, y);
 }

@@ -7,7 +7,7 @@ all: bin/canvas2d.exe
 	./bin/canvas2d.exe
 
 bin/canvas2d.exe: $(cpp_object_files)
-	g++ -o bin/canvas2d.exe $(cpp_object_files) lib/libfreeglut32.a lib/libopengl32.a lib/libglu32.a
+	g++ -O2 -o bin/canvas2d.exe $(cpp_object_files) lib/libfreeglut32.a lib/libopengl32.a lib/libglu32.a
 
 $(cpp_object_files): bin/obj/%.o : src/%.cpp
 	mkdir -p bin
