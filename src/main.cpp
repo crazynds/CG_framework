@@ -22,76 +22,87 @@
 #include <algorithm>
 
 #include "gl_canvas2d.h"
-
-int screenWidth = 320, screenHeight = 320;
-
-int mouseX, mouseY;
-int lastMouseX = -1, lastMouseY = -1;
+#include "EngineState.h"
 
 unsigned long long int step = 0;
 
-int windowX, windowY;
+EngineState *globalState;
 
-void render()
-{
-   step += 1;
 
-   if (lastMouseX > 0 && lastMouseY > 0)
-   {
-      int xDiff = lastMouseX - screenWidth / 2;
-      lastMouseX = -1;
-      int yDiff = screenHeight / 2 - lastMouseY;
-      lastMouseY = -1;
-      printf("DIFF: %d %d\n", xDiff, yDiff);
-      windowX += xDiff / 3;
-      windowY += yDiff / 3;
-      windowX = std::min(windowX, 1920 - screenWidth);
-      if (windowX < 0)
-         windowX = 0;
-      windowY = std::min(windowY, 1024 - screenHeight);
-      if (windowY < 0)
-         windowY = 0;
-   }
-   glutPositionWindow(windowX, windowY);
+// void segueMouse()
+// {
+//    step += 1;
+//    if (lastMouseX > 0 && lastMouseY > 0)
+//    {
+//       int xDiff = lastMouseX - screenWidth / 2;
+//       lastMouseX = -1;
+//       int yDiff = screenHeight / 2 - lastMouseY;
+//       lastMouseY = -1;
+//       printf("DIFF: %d %d\n", xDiff, yDiff);
+//       windowX += xDiff / 3;
+//       windowY += yDiff / 3;
+//       windowX = std::min(windowX, 1920 - screenWidth);
+//       if (windowX < 0)
+//          windowX = 0;
+//       windowY = std::min(windowY, 1024 - screenHeight);
+//       if (windowY < 0)
+//          windowY = 0;
+//    }   
+//    glutPositionWindow(windowX, windowY);
+// }
 
+
+void tick(){
+   globalState->tick();
+}
+
+void draw(){
    // Clear screen
    CV::color(WHITE);
-   CV::rectFill(0,0, screenWidth, screenHeight);
+   CV::rectFill({0,0}, globalState->getScreenSize());
    CV::translate(0, 0);
-
 
    CV::color(BLACK);
    CV::text(20, 500, "Programa Demo Canvas2D");
 
    char str[100];
-   CV::textf(10, 300, "Mouse: (%d,%d)", mouseX, mouseY);
+   CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
    CV::textf(10, 320, "Screen: (%d,%d)", screenWidth, screenHeight);
+   globalState->render();
+}
+
+
+void render()
+{
+   // Run multiple tickes
+   tick();
+
+   draw();
 
    Sleep(10); // nao eh controle de FPS. Somente um limitador de FPS.
 }
 
+void end(){
+   delete globalState;
+   exit(0);
+}
 void keyboard(int key)
 {
    if (key == 27)
-      exit(0);
-   printf("\nTecla: %d", key);
+      end();
+   globalState->keyboardHandler(key, true);
 }
 void keyboardUp(int key)
 {
-   printf("\nLiberou: %d", key);
+   globalState->keyboardHandler(key, false);
 }
 void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
-   mouseX = x; // guarda as coordenadas do mouse para exibir dentro da render()
-   mouseY = y;
-   lastMouseX = x;
-   lastMouseY = y;
-
-   printf("\nmouse %d %d %d %d %d %d", button, state, wheel, direction, x, y);
+   globalState->mouseHandler(button, state, wheel, direction, x, y);
 }
-
 int main(void)
 {
+   globalState = new EngineState();
    CV::init(screenWidth, screenHeight, "Titulo da Janela: Canvas 2D - Pressione 1, 2, 3");
    CV::run();
 }

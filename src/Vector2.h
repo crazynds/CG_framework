@@ -2,23 +2,24 @@
 #define __VECTOR_2_H__
 
 
+template <class T>
 class Vector2
 {
 public:
-   float x, y;
+   T x, y;
 
    Vector2()
    {
       x = y = 0;
    }
 
-   Vector2(float _x, float _y)
+   Vector2(T _x, T _y)
    {
        x = _x;
        y = _y;
    }
 
-   void set(float _x, float _y)
+   void set(T _x, T _y)
    {
        x = _x;
        y = _y;
@@ -39,15 +40,33 @@ public:
        y /= norm;
    }
 
-   Vector2 operator - (const Vector2& v)
+   Vector2<T> operator - (const Vector2<T>& v)
    {
-        Vector2 aux( x - v.x, y - v.y);
+        Vector2<T> aux( x - v.x, y - v.y);
         return( aux );
    }
 
-   Vector2 operator + (const Vector2& v)
+   Vector2<T> operator + (const Vector2<T>& v)
    {
-       Vector2 aux( x + v.x, y + v.y);
+       Vector2<T> aux( x + v.x, y + v.y);
+       return( aux );
+   }
+
+   Vector2<T> operator * (const T& v)
+   {
+       Vector2<T> aux( x * v, y * v);
+       return( aux );
+   }
+
+   Vector2<T> operator += (const Vector2<T>& v)
+   {
+       Vector2<T> aux( x + v.x, y + v.y);
+       return( aux );
+   }
+   
+   Vector2<T> operator *= (const T& v)
+   {
+       Vector2<T> aux( x * v, y * v);
        return( aux );
    }
 
@@ -55,5 +74,21 @@ public:
 
 
 };
+
+class Vector2i : public Vector2<int>{
+public:
+    Vector2i(int x,int y):Vector2(x,y){}
+};
+class Vector2f : public Vector2<float>{
+public:
+    Vector2f(float x,float y):Vector2(x,y){}
+};
+class Vector2d : public Vector2<double>{
+public:
+    Vector2d(double x,double y):Vector2(x,y){}
+    Vector2d(const Vector2i& vec):Vector2(vec.x,vec.y){}
+};
+
+
 
 #endif

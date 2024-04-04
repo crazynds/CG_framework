@@ -1,5 +1,5 @@
-#ifndef __BOTAO_H__
-#define __BOTAO_H__
+#ifndef __COLOR_H__
+#define __COLOR_H__
 
 
 class Color{
