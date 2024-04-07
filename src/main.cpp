@@ -16,13 +16,12 @@
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h> //callback da wheel do mouse.
 
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <algorithm>
 
 #include "gl_canvas2d.h"
-#include "EngineState.h"
+#include "Classes/EngineState.h"
+#include "Scenes/Scenes.h"
 
 unsigned long long int step = 0;
 
@@ -53,7 +52,8 @@ EngineState *globalState;
 
 
 void tick(){
-   globalState->tick();
+   globalState->tick(0.015);
+   // 15 ms
 }
 
 void draw(){
@@ -65,7 +65,6 @@ void draw(){
    CV::color(BLACK);
    CV::text(20, 500, "Programa Demo Canvas2D");
 
-   char str[100];
    CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
    CV::textf(10, 320, "Screen: (%d,%d)", screenWidth, screenHeight);
    globalState->render();
@@ -104,5 +103,6 @@ int main(void)
 {
    globalState = new EngineState();
    CV::init(screenWidth, screenHeight, "Titulo da Janela: Canvas 2D - Pressione 1, 2, 3");
+   globalState->setMainEntity(generateScene1());
    CV::run();
 }

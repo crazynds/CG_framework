@@ -1,34 +1,28 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#include "../Classes/Vector2.h"
+#include "../Classes/Position.h"
 
-#include "../EngineState.h"
+#define TICK_OK 0
+#define TICK_TO_FRONT 1
+#define TICK_TO_BACK 2
+#define TICK_ERROR -1
+#define TICK_KILL_MYSELF -2
 
-class Entity{
-protected:
-    Vector2d position;
+class EngineState;
+
+class Entity : public Position
+{
 public:
-
-    Entity(Vector2d _position){
-        position = _position;
+    Entity(Vector2d _position) : Position(_position)
+    {
     }
 
-    virtual void tick(const EngineState *state, double delta) = 0;
+    virtual ~Entity() {}
+
+    virtual int tick(EngineState *state, double delta) = 0;
     virtual void render() = 0;
-
-
-    Vector2d getPosition(){
-        return position;
-    }
-
-    void translate(Vector2d vec){
-        position += vec;
-    }
-
-    void setPosition(Vector2d _position){
-        position = _position;
-    }
-
 };
 
 #endif

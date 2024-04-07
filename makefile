@@ -6,6 +6,11 @@ GCC_FLAGS := -Wall -fexceptions -std=c++11 -g -Iinclude -c
 all: bin/canvas2d.exe
 	./bin/canvas2d.exe
 
+clear:
+	rm ./bin -r
+clean:
+	rm ./bin -r
+
 bin/canvas2d.exe: $(cpp_object_files)
 	g++ -O2 -o bin/canvas2d.exe $(cpp_object_files) lib/libfreeglut32.a lib/libopengl32.a lib/libglu32.a
 
