@@ -1,5 +1,5 @@
-#include "EngineState.h"
-#include "../entities/Entity.h"
+#include <EngineState.h>
+#include <entities/Entity.h>
 
 int screenWidth = 1200, screenHeight = 800;
 
@@ -14,6 +14,9 @@ void EngineState::tick(double delta)
 {
     if (mainEntity)
         mainEntity->tick(this, delta);
+
+    if (mouseState == 0)
+        setFocusedEntity(nullptr);
     lastReadMouseX = -1;
     lastReadMouseY = -1;
     mouseState = -2;

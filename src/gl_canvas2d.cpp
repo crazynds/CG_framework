@@ -48,16 +48,26 @@ void render();
 
 void CV::point(float x, float y)
 {
-   glBegin(GL_POINTS);
-      glVertex2d(x, y);
-   glEnd();
+   // Tive q gambiarrar aq pq não tava plotando um pixel pra mim
+   // glBegin(GL_POINTS);
+   //    glVertex2d(x, y);
+   // glEnd();
+   CV::rect(x, y, x + 1, y + 1);
 }
 
 void CV::point(Vector2d p)
 {
-   glBegin(GL_POINTS);
-      glVertex2d(p.x, p.y);
-   glEnd();
+   // glBegin(GL_POINTS);
+   //    glVertex2d(p.x, p.y);
+   // glEnd();
+   CV::rect(p.x, p.y, p.x + 1, p.y + 1);
+}
+void CV::point(Vector2f p)
+{
+   // glBegin(GL_POINTS);
+   //    glVertex2d(p.x, p.y);
+   // glEnd();
+   CV::rect(p.x, p.y, p.x + 1, p.y + 1);
 }
 
 void CV::line( float x1, float y1, float x2, float y2 )
@@ -65,6 +75,13 @@ void CV::line( float x1, float y1, float x2, float y2 )
    glBegin(GL_LINES);
       glVertex2d(x1, y1);
       glVertex2d(x2, y2);
+   glEnd();
+}
+void CV::line(Vector2d f1, Vector2d f2)
+{
+   glBegin(GL_LINES);
+   glVertex2d(f1.x, f1.y);
+   glVertex2d(f2.x, f2.y);
    glEnd();
 }
 

@@ -32,9 +32,10 @@ public:
         return position;
     }
 
-    void translate(Vector2d vec)
+    Position translate(Vector2<double> vec)
     {
         position += vec;
+        return *this;
     }
 
     void setPosition(Vector2d _position)

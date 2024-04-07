@@ -2,10 +2,10 @@
 #define __BOTAO_H__
 
 #include <Color.h>
-#include "../gl_canvas2d.h"
-#include "../entities/ClicableEntity.h"
+#include <gl_canvas2d.h>
+#include <entities/ClicableEntity.h>
 
-typedef void (*EventFunction)();
+typedef void (*EventFunction)(void *arg);
 
 class Botao : public ClicableEntity
 {
@@ -13,6 +13,8 @@ class Botao : public ClicableEntity
   int len = 0;
   bool hover = false;
   EventFunction clickFunction = (EventFunction)0;
+
+  void *arg;
 
 public:
   Botao(Vector2d pos, Vector2d boxSize, const char *_label) : ClicableEntity(pos, boxSize)
@@ -22,9 +24,10 @@ public:
     len = strlen(label);
   }
 
-  void addEventListenerOnClick(EventFunction clickFunction)
+  void addEventListenerOnClick(EventFunction clickFunction, void *arg)
   {
     this->clickFunction = clickFunction;
+    this->arg = arg;
   }
 
   virtual void render()
@@ -55,7 +58,7 @@ public:
   virtual void onClick()
   {
     if (clickFunction != 0)
-      clickFunction();
+      clickFunction(arg);
   }
 };
 

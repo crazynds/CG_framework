@@ -1,36 +1,60 @@
 
 
-#include "../Classes/Screen.h"
-#include "../Classes/Botao.h"
-#include "../Classes/Position.h"
+#include <entities/Screen.h>
+#include <entities/Botao.h>
+#include <Position.h>
+#include <entities/Image.h>
+#include <vector>
+#include <string>
 
 Screen *paintScreen;
+
+void addImg(void *arg)
+{
+    char *args = (char *)arg;
+    char buffer[256] = "./images/";
+    strcat(buffer, args);
+    BMPImage *a = BMPImage::readBMP(buffer);
+    if (a != nullptr)
+    {
+        paintScreen->addEntity(a);
+    }
+}
+
+char *imgs[] = {
+    "a.bmp",
+    "b.bmp",
+    "c.bmp",
+};
 
 Entity *generateScene1()
 {
     Screen *screen = new Screen();
-    Botao *b1 = new Botao(
-        Position::from(TOP_LEFT)
-            .toRight(100)
-            .toBottom(60)
-            .getPosition(),
-        {100, 40}, "a.bpm");
-    Botao *b2 = new Botao(
-        Position::from(b1)
-            .toRight(120)
-            .getPosition(),
-        {100, 40}, "b.bpm");
-    Botao *b3 = new Botao(
-        Position::from(b2)
-            .toRight(120)
-            .getPosition(),
-        {100, 40}, "c.bpm");
 
-    paintScreen = new Screen()
+    Botao *last = nullptr;
+    for (int x = 0; x < 3; x++)
+    {
+        Vector2d pos;
+        if (last == nullptr)
+        {
+            pos = Position::from(TOP_LEFT)
+                      .toRight(100)
+                      .toBottom(60)
+                      .getPosition();
+        }
+        else
+        {
+            pos = Position::from(last)
+                      .toRight(120)
+                      .getPosition();
+        }
+        Botao *b1 = new Botao(pos, {100, 40}, imgs[x]);
+        b1->addEventListenerOnClick(addImg, (void *)imgs[x]);
+        screen->addEntity(b1);
+        last = b1;
+    }
+    paintScreen = new Screen();
 
-    screen->addEntity(b1);
-    screen->addEntity(b2);
-    screen->addEntity(b3);
     screen->addEntity(paintScreen);
     return screen;
 }

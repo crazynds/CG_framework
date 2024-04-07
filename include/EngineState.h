@@ -2,6 +2,7 @@
 #define __ENGINE_STATE_H__
 
 #include "Vector2.h"
+#include <stdio.h>
 
 extern int screenWidth, screenHeight;
 
@@ -23,7 +24,11 @@ private:
     unsigned long long int tickNumber = 0;
     unsigned long long int frame = 0;
 
+    bool clicking = false;
+
     Entity *mainEntity = 0;
+
+    Entity *focusedEntity = 0;
 
 public:
     void render();
@@ -39,6 +44,10 @@ public:
         mouseButton = button;
         mouseState = state;
         mouseWheel = wheel;
+        if (state == 0)
+            clicking = true;
+        if (state == 1)
+            clicking = false;
         mouseX = x;
         mouseY = y;
         lastReadMouseX = x;
@@ -67,6 +76,15 @@ public:
     {
         return mouseState;
     }
+    void setFocusedEntity(Entity *entity)
+    {
+        this->focusedEntity = entity;
+    }
+
+    Entity *getFocusedEntity()
+    {
+        return this->focusedEntity;
+    }
 
     void setMainEntity(Entity *entity);
 
@@ -83,6 +101,11 @@ public:
     unsigned long long int getFrame()
     {
         return frame;
+    }
+
+    bool isClicking()
+    {
+        return clicking;
     }
 
     bool getKeyboardState(int key)

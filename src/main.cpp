@@ -19,9 +19,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "gl_canvas2d.h"
-#include "Classes/EngineState.h"
-#include "Scenes/Scenes.h"
+#include <gl_canvas2d.h>
+#include <EngineState.h>
+#include <Scenes.h>
 
 unsigned long long int step = 0;
 
@@ -52,14 +52,13 @@ EngineState *globalState;
 
 
 void tick(){
-   globalState->tick(0.015);
-   // 15 ms
+   double delta = 0.015;
+   globalState->tick(delta);
 }
 
 void draw(){
    // Clear screen
-   CV::color(WHITE);
-   CV::rectFill({0,0}, globalState->getScreenSize());
+   CV::clear(WHITE.r, WHITE.g, WHITE.b);
    CV::translate(0, 0);
 
    CV::color(BLACK);
@@ -73,12 +72,9 @@ void draw(){
 
 void render()
 {
-   // Run multiple tickes
    tick();
 
    draw();
-
-   Sleep(10); // nao eh controle de FPS. Somente um limitador de FPS.
 }
 
 void end(){
@@ -102,7 +98,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 int main(void)
 {
    globalState = new EngineState();
-   CV::init(screenWidth, screenHeight, "Titulo da Janela: Canvas 2D - Pressione 1, 2, 3");
+   CV::init(screenWidth, screenHeight, "Trabalho 1");
    globalState->setMainEntity(generateScene1());
    CV::run();
 }

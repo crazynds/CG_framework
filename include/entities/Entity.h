@@ -1,8 +1,8 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#include "../Classes/Vector2.h"
-#include "../Classes/Position.h"
+#include <Vector2.h>
+#include <Position.h>
 
 #define TICK_OK 0
 #define TICK_TO_FRONT 1
@@ -23,6 +23,11 @@ public:
 
     virtual int tick(EngineState *state, double delta) = 0;
     virtual void render() = 0;
+
+    virtual const char *entityName()
+    {
+        return "Entity";
+    };
 };
 
 #endif

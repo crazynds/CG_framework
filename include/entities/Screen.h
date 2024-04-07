@@ -35,15 +35,15 @@ public:
             switch(result){
                 case TICK_TO_BACK:
                     end.push_back(*i);
-                    entities.erase(i);
+                    i = entities.erase(i);
                     break;
                 case TICK_TO_FRONT:
                     front.push_back(*i);
-                    entities.erase(i);
+                    i = entities.erase(i);
                     break;
                 case TICK_KILL_MYSELF:
                     delete *i;
-                    entities.erase(i);
+                    i = entities.erase(i);
                     break;
                 case TICK_OK:
                 default:

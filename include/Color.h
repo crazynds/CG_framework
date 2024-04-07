@@ -10,12 +10,28 @@ public:
         this->a = 1;
     }
     Color(float r,float g,float b, float a):r(r),g(g),b(b),a(a){}
+    Color()
+    {
+    }
 
     // Convert from 0-255 to 0-1
-    static Color fromRGB(int r, int g, int b){
+    static Color fromRGB(int r, int g, int b)
+    {
         return Color::fromRGB(r,g,b,1);
     }
     static Color fromRGB(int r, int g, int b,int a){
+        while (r > 255)
+        {
+            r >>= 1;
+        }
+        while (g > 255)
+        {
+            g >>= 1;
+        }
+        while (b > 255)
+        {
+            b >>= 1;
+        }
         float rf = (r%256);
         float gf = (g%256);
         float bf = (b%256);
@@ -23,6 +39,14 @@ public:
         return Color(rf/255,gf/255,bf/255,af/255);
     }
 
+    bool operator==(const Color &c)
+    {
+        return this->r == c.r && this->b == c.b && this->g == c.g && this->a == c.a;
+    }
+    bool operator!=(const Color &c)
+    {
+        return !(this->operator==(c));
+    }
 };
 
 const Color BLACK = Color::fromRGB(0,0,0);

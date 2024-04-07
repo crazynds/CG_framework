@@ -63,6 +63,13 @@ public:
         return *this;
     }
 
+    Vector2<T> &operator-=(const Vector2<T> &v)
+    {
+        this->x -= v.x;
+        this->y -= v.y;
+        return *this;
+    }
+
     Vector2<T> *operator*=(const T &v)
     {
         this->x *= v;
@@ -91,6 +98,7 @@ public:
     Vector2d() : Vector2() {}
     Vector2d(double x, double y) : Vector2(x, y) {}
     Vector2d(const Vector2i &vec) : Vector2(vec.x, vec.y) {}
+    Vector2d(const Vector2<double> &vec) : Vector2(vec.x, vec.y) {}
 };
 
 #endif
