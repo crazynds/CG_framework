@@ -60,6 +60,11 @@ public:
     if (clickFunction != 0)
       clickFunction(arg);
   }
+
+  virtual void entityName(char *buffer)
+  {
+    sprintf(buffer, "Button (%s)", label);
+  };
 };
 
 #endif

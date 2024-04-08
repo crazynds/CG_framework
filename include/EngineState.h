@@ -24,6 +24,9 @@ private:
     unsigned long long int tickNumber = 0;
     unsigned long long int frame = 0;
 
+    double sumTime = 0;
+    double lastDebugTime = 0;
+
     bool clicking = false;
 
     Entity *mainEntity = 0;
@@ -113,6 +116,11 @@ public:
         if (key < 0 || key >= 256)
             return false;
         return keyboard[key];
+    }
+
+    bool isDebugTick()
+    {
+        return sumTime - lastDebugTime > 2;
     }
 };
 

@@ -3,6 +3,7 @@
 
 #include <Vector2.h>
 #include <Position.h>
+#include <stdio.h>
 
 #define TICK_OK 0
 #define TICK_TO_FRONT 1
@@ -24,9 +25,9 @@ public:
     virtual int tick(EngineState *state, double delta) = 0;
     virtual void render() = 0;
 
-    virtual const char *entityName()
+    virtual void entityName(char *buffer)
     {
-        return "Entity";
+        sprintf(buffer, "Entity");
     };
 };
 

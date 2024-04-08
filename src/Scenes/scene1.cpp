@@ -2,6 +2,7 @@
 
 #include <entities/Screen.h>
 #include <entities/Botao.h>
+#include <entities/BotaoToggleImage.h>
 #include <Position.h>
 #include <entities/Image.h>
 #include <vector>
@@ -21,7 +22,7 @@ void addImg(void *arg)
     }
 }
 
-char *imgs[] = {
+const char *imgs[] = {
     "a.bmp",
     "b.bmp",
     "c.bmp",
@@ -53,6 +54,14 @@ Entity *generateScene1()
         screen->addEntity(b1);
         last = b1;
     }
+
+    Botao *b1 = new BotaoToggleImage(Position::from(last)
+                                         .toRight(120)
+                                         .getPosition(),
+                                     {160, 40}, "Altera Imagem");
+    screen->addEntity(b1);
+    last = b1;
+
     paintScreen = new Screen();
 
     screen->addEntity(paintScreen);

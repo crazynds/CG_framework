@@ -18,12 +18,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <chrono>
 
 #include <gl_canvas2d.h>
 #include <EngineState.h>
 #include <Scenes.h>
 
 unsigned long long int step = 0;
+std::chrono::time_point<std::chrono::system_clock> lastTime;
 
 EngineState *globalState;
 
@@ -52,7 +54,10 @@ EngineState *globalState;
 
 
 void tick(){
-   double delta = 0.015;
+   auto now = std::chrono::system_clock::now();
+   double delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime).count();
+   delta /= 1000.0;
+   lastTime = now;
    globalState->tick(delta);
 }
 
@@ -100,5 +105,6 @@ int main(void)
    globalState = new EngineState();
    CV::init(screenWidth, screenHeight, "Trabalho 1");
    globalState->setMainEntity(generateScene1());
+   lastTime = std::chrono::system_clock::now();
    CV::run();
 }

@@ -41,18 +41,29 @@ private:
     Pin movePin;
     Pin rotationPin;
     Pin deletePin;
+    Pin flipXPin, flipYPin;
+    int state = 0;
 
     double rotation;
+    double scale = 1;
+    bool flipX = false, flipY = false;
 
     BMPImage() : ClicableEntity({0, 0}, {0, 0}),
                  movePin({0, 0}),
                  rotationPin({0, 0}),
-                 deletePin({0, 0})
+                 deletePin({0, 0}),
+                 flipXPin({0, 0}),
+                 flipYPin({0, 0})
     {
         movePin.setColor(BLUE);
         movePin.setHoverColor(LIGTH_BLUE);
         deletePin.setColor(RED);
         deletePin.setHoverColor(Color::fromRGB(0xaa, 0x00, 0x00));
+        rotation = 0;
+        flipYPin.setColor(YELLOW);
+        flipYPin.setHoverColor(LIGTH_YELLOW);
+        flipXPin.setColor(YELLOW);
+        flipXPin.setHoverColor(LIGTH_YELLOW);
     }
     ~BMPImage()
     {
@@ -72,7 +83,18 @@ public:
 
     virtual bool checkColision(int x, int y);
 
+    virtual void entityName(char *buffer)
+    {
+        sprintf(buffer, "BMPImage");
+    };
+
     static BMPImage *readBMP(const char *filename);
+
+    void toggle()
+    {
+        state += 1;
+        state %= 5;
+    }
 };
 
 #endif
