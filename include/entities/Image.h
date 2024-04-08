@@ -34,7 +34,7 @@ struct pixel
 
 class BMPImage : public ClicableEntity
 {
-private:
+protected:
     BMPHeader header;
     struct pixel **pixels;
 
@@ -67,9 +67,12 @@ private:
     }
     ~BMPImage()
     {
-        for (int x = 0; x < header.height; ++x)
-            delete[] pixels[x];
-        delete[] pixels;
+        if (pixels != nullptr)
+        {
+            for (int x = 0; x < header.height; ++x)
+                delete[] pixels[x];
+            delete[] pixels;
+        }
     }
 
 public:
@@ -80,6 +83,8 @@ public:
 
     virtual int tick(EngineState *state, double delta);
     virtual void render();
+
+    virtual void drawImage(Vector2f baseX, Vector2f baseY);
 
     virtual bool checkColision(int x, int y);
 

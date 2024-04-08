@@ -7,6 +7,7 @@
 #include <entities/Image.h>
 #include <vector>
 #include <string>
+#include <entities/BadApple.h>
 
 Screen *paintScreen;
 
@@ -30,6 +31,7 @@ const char *imgs[] = {
 
 Entity *generateScene1()
 {
+
     Screen *screen = new Screen();
 
     Botao *last = nullptr;
@@ -60,10 +62,14 @@ Entity *generateScene1()
                                          .getPosition(),
                                      {160, 40}, "Altera Imagem");
     screen->addEntity(b1);
+
     last = b1;
 
     paintScreen = new Screen();
 
+    paintScreen->addEntity(new BadApple());
     screen->addEntity(paintScreen);
+
     return screen;
 }
+

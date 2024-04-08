@@ -86,11 +86,9 @@ bool BMPImage::checkColision(int x, int y)
     return ClicableEntity::checkColision(xd + this->position.x, yd + this->position.y);
 }
 
-void BMPImage::render()
+void BMPImage::drawImage(Vector2f baseX, Vector2f baseY)
 {
     struct pixel current = {0, 0, 0};
-    Vector2f baseX = Vector2f(cos(this->rotation), sin(this->rotation));
-    Vector2f baseY = Vector2f(-sin(this->rotation), cos(this->rotation));
 
     Vector2f posRow = Vector2f(this->position.x, this->position.y);
     Vector2f posNextPixel = posRow;
@@ -148,9 +146,16 @@ void BMPImage::render()
             CV::point(posNextPixel);
             posNextPixel += baseX;
         }
-        posNextPixel += baseY;
         posRow += baseY;
     }
+}
+
+void BMPImage::render()
+{
+    Vector2f baseX = Vector2f(cos(this->rotation), sin(this->rotation));
+    Vector2f baseY = Vector2f(-sin(this->rotation), cos(this->rotation));
+
+    this->drawImage(baseX, baseY);
 
     if (this->isFocused())
     {
