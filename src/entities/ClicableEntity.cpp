@@ -16,7 +16,7 @@ int ClicableEntity::tick(EngineState *state, double delta)
 
     if (clicked && !state->isClicking())
     {
-        onRelease();
+        onRelease(state);
         clicked = false;
     }
 
@@ -31,14 +31,14 @@ int ClicableEntity::tick(EngineState *state, double delta)
         if (!enter)
         {
             enter = true;
-            onMouseEnter();
+            onMouseEnter(state);
         }
-        if (state->getMouseState() == 0 && state->getMouseButton() == 0)
+        if (state->getMouseState() == 0)
         {
             // clicked
             clicked = true;
             state->setFocusedEntity(this);
-            onClick();
+            onClick(state);
             Vector2i mouse = state->getMousePosition();
             state->mouseHandler(-2, -3, -2, -2, mouse.x, mouse.y);
             return TICK_TO_FRONT;
@@ -50,7 +50,7 @@ int ClicableEntity::tick(EngineState *state, double delta)
         if (enter)
         {
             enter = false;
-            onMouseExit();
+            onMouseExit(state);
         }
     }
     return TICK_OK;

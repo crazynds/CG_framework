@@ -1,6 +1,11 @@
 #ifndef __BOTAO_TOGGLE_IMAGE_H__
 #define __BOTAO_TOGGLE_IMAGE_H__
 
+/**
+ * Essa entidade é mais especializada, e serve unicamente para quando for acionado, verificar se a entidade atualmente focada é uma imagem
+ *  e se for, ele altera a exibição dela.
+ */
+
 #include <entities/Botao.h>
 #include <entities/Image.h>
 

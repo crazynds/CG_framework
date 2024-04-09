@@ -6,6 +6,32 @@
 #include <Color.h>
 #include <gl_canvas2d.h>
 #include <cmath>
+#include <map>
+
+void BMPImage::plotHistogram(Graph *graph)
+{
+    std::map<int, int> green, red, blue, lum;
+    for (int x = 0; x < 256; x++)
+    {
+        red[x] = green[x] = blue[x] = lum[x] = 0;
+    }
+    for (int y = 0; y < this->header.height; ++y)
+    {
+        struct pixel *row = this->pixels[flipY ? this->header.height - 1 - y : y];
+        for (int x = 0; x < this->header.width; ++x)
+        {
+            struct pixel pixel = row[flipX ? this->header.width - 1 - x : x];
+            green[(int)(pixel.g * 255)] += 1;
+            red[(int)(pixel.r * 255)] += 1;
+            blue[(int)(pixel.b * 255)] += 1;
+            lum[(int)((0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b) * 255)] += 1;
+        }
+    }
+    graph->addLine(red, RED);
+    graph->addLine(green, GREEN);
+    graph->addLine(blue, BLUE);
+    graph->addLine(lum, GREY);
+}
 
 int BMPImage::tick(EngineState *state, double delta)
 {

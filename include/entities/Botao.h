@@ -1,11 +1,16 @@
 #ifndef __BOTAO_H__
 #define __BOTAO_H__
 
+/**
+ * Essa entidade define um botão na tela.
+ * Ele possui uma label e um evento de clique definido pelo usuário.
+ */
+
 #include <Color.h>
 #include <gl_canvas2d.h>
 #include <entities/ClicableEntity.h>
 
-typedef void (*EventFunction)(void *arg);
+typedef void (*EventFunction)(EngineState *state, void *arg);
 
 class Botao : public ClicableEntity
 {
@@ -45,20 +50,20 @@ public:
     CV::text(this->position.x + this->boxSize.x / 2 - len * 5, this->position.y + this->boxSize.y / 2 - 3, label); // escreve o label do botao mais ou menos ao centro.
   }
 
-  virtual void onMouseEnter()
+  virtual void onMouseEnter(EngineState *state)
   {
     hover = true;
   }
 
-  virtual void onMouseExit()
+  virtual void onMouseExit(EngineState *state)
   {
     hover = false;
   }
 
-  virtual void onClick()
+  virtual void onClick(EngineState *state)
   {
     if (clickFunction != 0)
-      clickFunction(arg);
+      clickFunction(state, arg);
   }
 
   virtual void entityName(char *buffer)

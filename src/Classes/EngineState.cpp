@@ -21,6 +21,13 @@ void EngineState::tick(double delta)
         printf("Entidades sendo desenhadas: \n");
     }
 
+    if (!mouseEvents.empty() && this->lock == false)
+    {
+        MouseEvent event = mouseEvents.front();
+        mouseEvents.pop_front();
+        this->mouseHandler(event.mouseButton, event.mouseState, event.mouseWheel, 0, event.mouseX, event.mouseY);
+    }
+
     if (mainEntity)
         mainEntity->tick(this, delta);
 
@@ -28,7 +35,9 @@ void EngineState::tick(double delta)
         lastDebugTime = sumTime;
 
     if (mouseState == 0)
+    {
         setFocusedEntity(nullptr);
+    }
     lastReadMouseX = -1;
     lastReadMouseY = -1;
     mouseState = -2;

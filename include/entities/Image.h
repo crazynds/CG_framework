@@ -1,10 +1,16 @@
 #ifndef __IMAGE_H__
 #define __IMAGE_H__
 
+/**
+ * O BPMImage é a classe para renderizar imagens do tipo bitmap.
+ * Ela faz o controle da rotação, e dentro dela ela possui outras entidades que ajudam a fazer a gestão dela mesma.
+ */
+
 #include <cstdint>
 #include <entities/ClicableEntity.h>
 #include <entities/Pin.h>
 #include <Color.h>
+#include <entities/Graph.h>
 
 #pragma pack(push, 1)
 struct BMPHeader
@@ -95,6 +101,8 @@ public:
         state += 1;
         state %= 5;
     }
+
+    void plotHistogram(Graph *graph);
 };
 
 #endif

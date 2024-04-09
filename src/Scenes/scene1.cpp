@@ -5,12 +5,13 @@
 #include <entities/BotaoToggleImage.h>
 #include <Position.h>
 #include <entities/Image.h>
+#include <entities/Graph.h>
 #include <vector>
 #include <string>
 
 Screen *paintScreen;
 
-void addImg(void *arg)
+void addImg(EngineState *state, void *arg)
 {
     char *args = (char *)arg;
     char buffer[256] = "./images/";
@@ -20,6 +21,13 @@ void addImg(void *arg)
     {
         paintScreen->addEntity(a);
     }
+}
+
+void addGraph(EngineState *state, void *args)
+{
+    Screen *s = (Screen *)state->getMainEntity();
+    Graph *graph = new Graph(Position::from(BOTTOM_CENTER).toLeft(200).getPosition(), {400, 400});
+    s->addEntity(graph);
 }
 
 const char *imgs[] = {
@@ -46,7 +54,7 @@ Entity *generateScene1()
         else
         {
             pos = Position::from(last)
-                      .toRight(120)
+                      .toRight(last->getBoxSize().x + 20)
                       .getPosition();
         }
         Botao *b1 = new Botao(pos, {100, 40}, imgs[x]);
@@ -56,9 +64,17 @@ Entity *generateScene1()
     }
 
     Botao *b1 = new BotaoToggleImage(Position::from(last)
-                                         .toRight(120)
+                                         .toRight(last->getBoxSize().x + 20)
                                          .getPosition(),
                                      {160, 40}, "Altera Imagem");
+    screen->addEntity(b1);
+    last = b1;
+
+    b1 = new Botao(Position::from(last)
+                       .toRight(last->getBoxSize().x + 20)
+                       .getPosition(),
+                   {160, 40}, "Abrir Grafico");
+    b1->addEventListenerOnClick(addGraph, nullptr);
     screen->addEntity(b1);
     last = b1;
 

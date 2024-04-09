@@ -94,6 +94,10 @@ void CV::rect( float x1, float y1, float x2, float y2 )
       glVertex2d(x2, y1);
    glEnd();
 }
+void CV::rect(Vector2d p1, Vector2d p2)
+{
+   CV::rect(p1.x, p1.y, p2.x, p2.y);
+}
 
 void CV::rectFill( float x1, float y1, float x2, float y2 )
 {

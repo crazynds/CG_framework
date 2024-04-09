@@ -1,6 +1,12 @@
 #ifndef __CLICABLE_ENTITY_H__
 #define __CLICABLE_ENTITY_H__
 
+/**
+ * Essa entidade se assemelha muito a entidade botão, porém ela é mais genérica, e permite que entidades que descendam dela definam
+ *  a box de colisão.
+ * Essa entidade também define a interface que possibilita que eventos sejam chamados como: onClick, onRelease, onMouseEnter e onMouseExit.
+ */
+
 #include <EngineState.h>
 #include <entities/FocusedEntity.h>
 #include <Vector2.h>
@@ -18,10 +24,10 @@ public:
     {
     }
 
-    virtual void onMouseEnter(){}; // Not mandatory to be implemented
-    virtual void onMouseExit(){};  // Not mandatory to be implemented
-    virtual void onClick(){};      // Not mandatory to be implemented
-    virtual void onRelease(){};    // Not mandatory to be implemented
+    virtual void onMouseEnter(EngineState *state){}; // Not mandatory to be implemented
+    virtual void onMouseExit(EngineState *state){};  // Not mandatory to be implemented
+    virtual void onClick(EngineState *state){};      // Not mandatory to be implemented
+    virtual void onRelease(EngineState *state){};    // Not mandatory to be implemented
 
     virtual bool checkColision(int x, int y)
     {

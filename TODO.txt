@@ -1,0 +1,6 @@
+-Fazer componente de grafico
+-Plotar grafico de histograma
+-Adicionar comentários nos códigos
+-Ajustar para compilar no codeblocks 
+
+

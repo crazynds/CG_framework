@@ -98,7 +98,7 @@ void keyboardUp(int key)
 }
 void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
-   globalState->mouseHandler(button, state, wheel, direction, x, y);
+   globalState->mouseHandlerAsync(button, state, wheel, direction, x, y);
 }
 int main(void)
 {

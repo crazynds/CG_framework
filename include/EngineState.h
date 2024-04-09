@@ -1,12 +1,26 @@
 #ifndef __ENGINE_STATE_H__
 #define __ENGINE_STATE_H__
 
+/**
+ * Essa classe controla o estado da aplicação.
+ * Basicamente ela faz o handler de os os inputs do usuario, separa qual entidade é o foco atual
+ *  e armazena informações de teclado e mouse. Se as entidades precisarem de alguma informação
+ *  da aplicação, é essa classe que elas vão consultar.
+ */
+
 #include "Vector2.h"
 #include <stdio.h>
+#include <list>
 
 extern int screenWidth, screenHeight;
 
 class Entity;
+
+struct MouseEvent
+{
+    int mouseX = 0, mouseY = 0;
+    int mouseButton, mouseState, mouseWheel;
+};
 
 class EngineState
 {
@@ -14,7 +28,11 @@ private:
     // Screen variables
     //    int windowX, windowY;
     // Mouse variables
-    int mouseX = 0, mouseY = 0;
+    std::list<MouseEvent> mouseEvents;
+    bool lock;
+
+    int mouseX = 0,
+        mouseY = 0;
     int lastReadMouseX = -1, lastReadMouseY = -1;
     int mouseButton, mouseState, mouseWheel;
     // Keyboard variables
@@ -55,6 +73,21 @@ public:
         mouseY = y;
         lastReadMouseX = x;
         lastReadMouseY = y;
+    }
+    void mouseHandlerAsync(int button, int state, int wheel, int direction, int x, int y)
+    {
+        if (state != -2 || mouseEvents.empty())
+        {
+            this->lock = true;
+            MouseEvent event;
+            event.mouseButton = button;
+            event.mouseState = state;
+            event.mouseWheel = wheel;
+            event.mouseX = x;
+            event.mouseY = y;
+            mouseEvents.push_back(event);
+            this->lock = false;
+        }
     }
 
     Vector2i getScreenSize()

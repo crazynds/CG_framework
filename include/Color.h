@@ -1,6 +1,10 @@
 #ifndef __COLOR_H__
 #define __COLOR_H__
 
+/**
+ * Essa classe é um helper para ajudar a converter cores de inteiros para float,
+ * Ela também fornece algumas cores pre definidas.
+ */
 
 class Color{
 public:

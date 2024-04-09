@@ -1,6 +1,11 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+/**
+ * Essa classa defini a menor unidade que vai gerenciada na tela.
+ * Ela implementa interfaces importantes para que seja processada e renderizada, e ele é a base para todas as outras classes.
+ */
+
 #include <Vector2.h>
 #include <Position.h>
 #include <stdio.h>

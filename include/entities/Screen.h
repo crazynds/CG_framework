@@ -1,6 +1,10 @@
 #ifndef __SCREEN_H__
 #define __SCREEN_H__
 
+/**
+ * O Screen é uma classe que armazena uma lista de entidades, e gerencia elas para processa-las e renderiza-las.
+ * Ele faz o controle da remoção da entidade baseado nos eventos retornados pelo tick.
+ */
 
 #include <list>
 #include <stdio.h>

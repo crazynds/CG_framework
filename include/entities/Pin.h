@@ -1,6 +1,11 @@
 #ifndef __PIN_H__
 #define __PIN_H__
 
+/**
+ * O Pin é uma entidade do tipo clicavel, que é uma bolinha que o usuario pode clicar a arrastar.
+ * O propósito dela é servir como auxiliar para outras entidades que usam sua propriedade de podem ser arrastadas para computar uma ação.
+ */
+
 #include <entities/ClicableEntity.h>
 #include <Color.h>
 #include <gl_canvas2d.h>

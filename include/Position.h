@@ -1,6 +1,11 @@
 #ifndef __POSITION_H__
 #define __POSITION_H__
 
+/**
+ * Essa classe é um helper para posicionar objetos na tela.
+ * Ela tem algumas funções auxiliares que permitem que os objetos sejam posicionados um ao lado do outro facilmente.
+ */
+
 #include "Vector2.h"
 
 extern int screenWidth, screenHeight;
