@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Canvas 2D" />
+		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -37,18 +38,36 @@
 			<Add directory="./include" />
 		</Compiler>
 		<Linker>
-			<Add library="./lib/libfreeglut32.a" />
-			<Add library="./lib/libopengl32.a"/>
-			<Add library="./lib/libglu32.a"/>
+			<Add library="../lib/libfreeglut32.a" />
+			<Add library="../lib/libopengl32.a" />
+			<Add library="../lib/libglu32.a" />
 		</Linker>
-		<Unit filename="src/Bola.h" />
-		<Unit filename="src/Botao.h" />
-		<Unit filename="src/Relogio.cpp" />
-		<Unit filename="src/Relogio.h" />
-		<Unit filename="src/Vector2.h" />
+		<Unit filename="include/Color.h" />
+		<Unit filename="include/EngineState.h" />
+		<Unit filename="include/Position.h" />
+		<Unit filename="include/Scenes.h" />
+		<Unit filename="include/Vector2.h" />
+		<Unit filename="include/entities/Botao.h" />
+		<Unit filename="include/entities/BotaoToggleImage.h" />
+		<Unit filename="include/entities/ClicableEntity.h" />
+		<Unit filename="include/entities/Entity.h" />
+		<Unit filename="include/entities/FocusedEntity.h" />
+		<Unit filename="include/entities/Graph.h" />
+		<Unit filename="include/entities/Image.h" />
+		<Unit filename="include/entities/Pin.h" />
+		<Unit filename="include/entities/Screen.h" />
+		<Unit filename="include/gl_canvas2d.h" />
+		<Unit filename="src/Classes/EngineState.cpp" />
+		<Unit filename="src/Classes/Graph.cpp" />
+		<Unit filename="src/Classes/Image.cpp" />
+		<Unit filename="src/Classes/Screen.cpp" />
+		<Unit filename="src/Scenes/scene1.cpp" />
+		<Unit filename="src/entities/ClicableEntity.cpp" />
+		<Unit filename="src/entities/FocusedEntity.cpp" />
 		<Unit filename="src/gl_canvas2d.cpp" />
-		<Unit filename="src/gl_canvas2d.h" />
 		<Unit filename="src/main.cpp" />
-
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

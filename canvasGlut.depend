@@ -57,7 +57,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1712529154 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\gl_canvas2d.cpp
+1712619723 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
@@ -89,7 +89,7 @@
 
 1589217858 c:\users\administrator\desktop\workspace\cg - trab 1\src\vector2.h
 
-1712534012 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\main.cpp
+1712623617 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -114,23 +114,24 @@
 	<stdio.h>
 	<stdlib.h>
 
-1712534802 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\enginestate.cpp
+1712623181 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\enginestate.cpp
 	<EngineState.h>
 	<entities/Entity.h>
 	<gl_canvas2d.h>
 
-1712532660 c:\users\administrator\desktop\workspace\cg - trab 1\include\enginestate.h
+1712623166 c:\users\administrator\desktop\workspace\cg - trab 1\include\enginestate.h
 	"Vector2.h"
 	<stdio.h>
+	<list>
 
 1712524112 c:\users\administrator\desktop\workspace\cg - trab 1\include\vector2.h
 
-1712532419 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\entity.h
+1712617174 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\entity.h
 	<Vector2.h>
 	<Position.h>
 	<stdio.h>
 
-1712500579 c:\users\administrator\desktop\workspace\cg - trab 1\include\position.h
+1712617081 c:\users\administrator\desktop\workspace\cg - trab 1\include\position.h
 	"Vector2.h"
 
 1712528697 c:\users\administrator\desktop\workspace\cg - trab 1\include\gl_canvas2d.h
@@ -143,9 +144,9 @@
 	<Vector2.h>
 	<Color.h>
 
-1712537918 c:\users\administrator\desktop\workspace\cg - trab 1\include\color.h
+1712616957 c:\users\administrator\desktop\workspace\cg - trab 1\include\color.h
 
-1712556876 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\image.cpp
+1712620152 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\image.cpp
 	<iostream>
 	<fstream>
 	<bits/stdc++.h>
@@ -154,61 +155,219 @@
 	<Color.h>
 	<gl_canvas2d.h>
 	<cmath>
+	<map>
 
-1712556876 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\image.h
+1712619537 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\image.h
 	<cstdint>
 	<entities/ClicableEntity.h>
 	<entities/Pin.h>
 	<Color.h>
+	<entities/Graph.h>
 
-1712525418 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\clicableentity.h
+1712620738 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\clicableentity.h
 	<EngineState.h>
 	<entities/FocusedEntity.h>
 	<Vector2.h>
 
-1712525547 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\focusedentity.h
+1712617230 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\focusedentity.h
 	<entities/Entity.h>
 
-1712531018 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\pin.h
+1712617479 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\pin.h
 	<entities/ClicableEntity.h>
 	<Color.h>
 	<gl_canvas2d.h>
 
-1712532694 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\screen.cpp
+1712622650 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\screen.cpp
 	<entities/Screen.h>
 	<EngineState.h>
 
-1712532447 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\screen.h
+1712617542 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\screen.h
 	<list>
 	<stdio.h>
 	<vector>
 	"../entities/Entity.h"
 
-1712527917 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\entities\clicableentity.cpp
+1712622965 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\entities\clicableentity.cpp
 	<entities/ClicableEntity.h>
 
 1712525230 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\entities\focusedentity.cpp
 	<entities/FocusedEntity.h>
 	<EngineState.h>
 
-1712525593 c:\users\administrator\desktop\workspace\cg - trab 1\include\scenes.h
+1712617128 c:\users\administrator\desktop\workspace\cg - trab 1\include\scenes.h
 	<entities/Entity.h>
 
-1712556876 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\scenes\scene1.cpp
+1712620960 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\scenes\scene1.cpp
 	<entities/Screen.h>
 	<entities/Botao.h>
 	<entities/BotaoToggleImage.h>
 	<Position.h>
 	<entities/Image.h>
+	<entities/Graph.h>
 	<vector>
 	<string>
 
-1712532235 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\botao.h
+1712620761 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\botao.h
 	<Color.h>
 	<gl_canvas2d.h>
 	<entities/ClicableEntity.h>
 
-1712534142 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\botaotoggleimage.h
+1712617371 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\botaotoggleimage.h
+	<entities/Botao.h>
+	<entities/Image.h>
+
+1712623364 source:c:\users\administrator\desktop\workspace\cg - trab 1\src\classes\graph.cpp
+	<entities/Graph.h>
+	<cmath>
+	<entities/Image.h>
+
+1712622913 c:\users\administrator\desktop\workspace\cg - trab 1\include\entities\graph.h
+	<entities/FocusedEntity.h>
+	<entities/Pin.h>
+	<vector>
+	<map>
+
+1712623182 source:e:\workspace\cg\cg - trab 1\src\classes\enginestate.cpp
+	<EngineState.h>
+	<entities/Entity.h>
+	<gl_canvas2d.h>
+
+1712623168 e:\workspace\cg\cg - trab 1\include\enginestate.h
+	"Vector2.h"
+	<stdio.h>
+	<list>
+
+1712524114 e:\workspace\cg\cg - trab 1\include\vector2.h
+
+1712617176 e:\workspace\cg\cg - trab 1\include\entities\entity.h
+	<Vector2.h>
+	<Position.h>
+	<stdio.h>
+
+1712617082 e:\workspace\cg\cg - trab 1\include\position.h
+	"Vector2.h"
+
+1712528698 e:\workspace\cg\cg - trab 1\include\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<Vector2.h>
+	<Color.h>
+
+1632060800 e:\workspace\cg\cg - trab 1\include\gl\glut.h
+	"freeglut_std.h"
+
+1632060798 e:\workspace\cg\cg - trab 1\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1632060794 e:\workspace\cg\cg - trab 1\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1712616958 e:\workspace\cg\cg - trab 1\include\color.h
+
+1712623366 source:e:\workspace\cg\cg - trab 1\src\classes\graph.cpp
+	<entities/Graph.h>
+	<cmath>
+	<entities/Image.h>
+
+1712622914 e:\workspace\cg\cg - trab 1\include\entities\graph.h
+	<entities/FocusedEntity.h>
+	<entities/Pin.h>
+	<vector>
+	<map>
+
+1712617232 e:\workspace\cg\cg - trab 1\include\entities\focusedentity.h
+	<entities/Entity.h>
+
+1712617480 e:\workspace\cg\cg - trab 1\include\entities\pin.h
+	<entities/ClicableEntity.h>
+	<Color.h>
+	<gl_canvas2d.h>
+
+1712620740 e:\workspace\cg\cg - trab 1\include\entities\clicableentity.h
+	<EngineState.h>
+	<entities/FocusedEntity.h>
+	<Vector2.h>
+
+1712619538 e:\workspace\cg\cg - trab 1\include\entities\image.h
+	<cstdint>
+	<entities/ClicableEntity.h>
+	<entities/Pin.h>
+	<Color.h>
+	<entities/Graph.h>
+
+1712620154 source:e:\workspace\cg\cg - trab 1\src\classes\image.cpp
+	<iostream>
+	<fstream>
+	<bits/stdc++.h>
+	<vector>
+	<entities/Image.h>
+	<Color.h>
+	<gl_canvas2d.h>
+	<cmath>
+	<map>
+
+1712622652 source:e:\workspace\cg\cg - trab 1\src\classes\screen.cpp
+	<entities/Screen.h>
+	<EngineState.h>
+
+1712617544 e:\workspace\cg\cg - trab 1\include\entities\screen.h
+	<list>
+	<stdio.h>
+	<vector>
+	"../entities/Entity.h"
+
+1712622966 source:e:\workspace\cg\cg - trab 1\src\entities\clicableentity.cpp
+	<entities/ClicableEntity.h>
+
+1712525232 source:e:\workspace\cg\cg - trab 1\src\entities\focusedentity.cpp
+	<entities/FocusedEntity.h>
+	<EngineState.h>
+
+1712619724 source:e:\workspace\cg\cg - trab 1\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1712623618 source:e:\workspace\cg\cg - trab 1\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	<chrono>
+	<gl_canvas2d.h>
+	<EngineState.h>
+	<Scenes.h>
+
+1712617130 e:\workspace\cg\cg - trab 1\include\scenes.h
+	<entities/Entity.h>
+
+1712620962 source:e:\workspace\cg\cg - trab 1\src\scenes\scene1.cpp
+	<entities/Screen.h>
+	<entities/Botao.h>
+	<entities/BotaoToggleImage.h>
+	<Position.h>
+	<entities/Image.h>
+	<entities/Graph.h>
+	<vector>
+	<string>
+
+1712620762 e:\workspace\cg\cg - trab 1\include\entities\botao.h
+	<Color.h>
+	<gl_canvas2d.h>
+	<entities/ClicableEntity.h>
+
+1712617372 e:\workspace\cg\cg - trab 1\include\entities\botaotoggleimage.h
 	<entities/Botao.h>
 	<entities/Image.h>
 
