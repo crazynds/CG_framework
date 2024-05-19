@@ -6,6 +6,10 @@
 #include <math.h>
 #include <string.h>
 
+/**
+ * Classes auxiliares para trabalhar com matrizes.
+ */
+
 template <class T>
 class Matrix3
 {

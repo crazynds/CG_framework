@@ -1,8 +1,11 @@
 #include <entities/Ball.h>
 #include <entities/Map.h>
+#include <entities/Screen.h>
+#include <entities/Particle.h>
 #include <Matrix3.h>
 #include <gl_canvas2d.h>
 #include <EngineState.h>
+#include <time.h>
 
 const extern double gravity;
 
@@ -37,6 +40,18 @@ int Ball::tick(EngineState *state, double delta)
             moviment = map->checkColision(state, getPosition(), mov) * dif;
         }
         translate(moviment * delta);
+
+        particle -= delta;
+        if (particle < 0)
+        {
+            particle += 0.05;
+            Screen *s = (Screen *)state->getMainEntity();
+            double vel = 3;
+            for (int x = 0; x < rand() % 3 + 1; x++)
+            {
+                s->addEntity(new Particle(getPosition(), moviment * -0.1 + (Vector2d){rand() % 17 - 8.0, rand() % 17 - 8.0} * vel, Color::fromRGB(0xa0, 0xa0, 0xa0), 0.4));
+            }
+        }
 
         if (getPosition().y <= 100)
         {

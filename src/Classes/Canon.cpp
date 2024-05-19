@@ -59,14 +59,7 @@ int Canon::tick(EngineState *state, double delta)
     {
         position.x = ball.getPosition().x;
         Map *map = (Map *)state->getFocusedEntity();
-        if (map->addLayer())
-        {
-            printf("Layer added\n");
-        }
-        else
-        {
-            printf("Layer not added\n");
-        }
+        map->addLayer();
     }
 
     return TICK_OK;

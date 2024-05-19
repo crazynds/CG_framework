@@ -7,10 +7,16 @@
 #include <entities/Entity.h>
 #include <Matrix3.h>
 
+/**
+ * Essa entidade é uma bolinha que vai se movimentar na tela e colidir com os blocos
+ */
+
 class Ball : public Entity
 {
 private:
     Matrix3Plan<double> transformation;
+
+    double particle;
 
 public:
     Vector2d moviment;

@@ -371,3 +371,177 @@
 	<entities/Botao.h>
 	<entities/Image.h>
 
+1712525232 source:e:\workspace\cg\cg - trab 2\src\entities\focusedentity.cpp
+	<entities/FocusedEntity.h>
+	<EngineState.h>
+
+1712617232 e:\workspace\cg\cg - trab 2\include\entities\focusedentity.h
+	<entities/Entity.h>
+
+1712617176 e:\workspace\cg\cg - trab 2\include\entities\entity.h
+	<Vector2.h>
+	<Position.h>
+	<stdio.h>
+
+1716108759 e:\workspace\cg\cg - trab 2\include\vector2.h
+	<math.h>
+
+1712617082 e:\workspace\cg\cg - trab 2\include\position.h
+	"Vector2.h"
+
+1716081871 e:\workspace\cg\cg - trab 2\include\enginestate.h
+	"Vector2.h"
+	<stdio.h>
+	<list>
+	<GL/glut.h>
+
+1632060800 e:\workspace\cg\cg - trab 2\include\gl\glut.h
+	"freeglut_std.h"
+
+1632060798 e:\workspace\cg\cg - trab 2\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1716149155 source:e:\workspace\cg\cg - trab 2\src\classes\enginestate.cpp
+	<EngineState.h>
+	<entities/Entity.h>
+	<gl_canvas2d.h>
+
+1715928360 e:\workspace\cg\cg - trab 2\include\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<Vector2.h>
+	<Color.h>
+
+1632060794 e:\workspace\cg\cg - trab 2\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1712616958 e:\workspace\cg\cg - trab 2\include\color.h
+
+1715924587 source:e:\workspace\cg\cg - trab 2\src\classes\screen.cpp
+	<entities/Screen.h>
+	<EngineState.h>
+
+1712617544 e:\workspace\cg\cg - trab 2\include\entities\screen.h
+	<list>
+	<stdio.h>
+	<vector>
+	"../entities/Entity.h"
+
+1716072136 source:e:\workspace\cg\cg - trab 2\src\entities\clicableentity.cpp
+	<entities/ClicableEntity.h>
+
+1712620740 e:\workspace\cg\cg - trab 2\include\entities\clicableentity.h
+	<EngineState.h>
+	<entities/FocusedEntity.h>
+	<Vector2.h>
+
+1715966434 source:e:\workspace\cg\cg - trab 2\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1716114696 source:e:\workspace\cg\cg - trab 2\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	<chrono>
+	<gl_canvas2d.h>
+	<EngineState.h>
+	<Scenes.h>
+	<Matrix3.h>
+	<windows.h>
+
+1715914424 e:\workspace\cg\cg - trab 2\include\scenes.h
+	<entities/Entity.h>
+
+1716100511 e:\workspace\cg\cg - trab 2\include\matrix3.h
+	<Vector2.h>
+	<vector>
+	<math.h>
+	<string.h>
+
+1716153320 source:e:\workspace\cg\cg - trab 2\src\classes\ball.cpp
+	<entities/Ball.h>
+	<entities/Map.h>
+	<Matrix3.h>
+	<gl_canvas2d.h>
+	<EngineState.h>
+
+1716151018 e:\workspace\cg\cg - trab 2\include\entities\ball.h
+	<list>
+	<stdio.h>
+	<vector>
+	<entities/Entity.h>
+	<Matrix3.h>
+
+1716151133 e:\workspace\cg\cg - trab 2\include\entities\map.h
+	<entities/Entity.h>
+	<EngineState.h>
+	<gl_canvas2d.h>
+
+1716151529 source:e:\workspace\cg\cg - trab 2\src\classes\canon.cpp
+	<entities/Canon.h>
+	<entities/Map.h>
+	<gl_canvas2d.h>
+	<EngineState.h>
+
+1716080366 e:\workspace\cg\cg - trab 2\include\entities\canon.h
+	<list>
+	<stdio.h>
+	<vector>
+	<entities/Entity.h>
+	<entities/Ball.h>
+	<Matrix3.h>
+
+1716154455 source:e:\workspace\cg\cg - trab 2\src\classes\map.cpp
+	<entities/Map.h>
+	<entities/Screen.h>
+	<entities/Ball.h>
+	<entities/Particle.h>
+	<windows.h>
+	<EngineState.h>
+	<set>
+	<stdlib.h>
+	<time.h>
+
+1716151500 e:\workspace\cg\cg - trab 2\include\entities\particle.h
+	<list>
+	<stdio.h>
+	<vector>
+	<entities/Entity.h>
+	<entities/Ball.h>
+	<Color.h>
+
+1716151959 source:e:\workspace\cg\cg - trab 2\src\classes\particle.cpp
+	<entities/Particle.h>
+	<gl_canvas2d.h>
+
+1716085452 source:e:\workspace\cg\cg - trab 2\src\scenes\scene2.cpp
+	<entities/Screen.h>
+	<entities/Botao.h>
+	<Position.h>
+	<entities/Canon.h>
+	<entities/Square.h>
+	<entities/Map.h>
+
+1712620762 e:\workspace\cg\cg - trab 2\include\entities\botao.h
+	<Color.h>
+	<gl_canvas2d.h>
+	<entities/ClicableEntity.h>
+
+1716081828 e:\workspace\cg\cg - trab 2\include\entities\square.h
+	<entities/Entity.h>
+	<gl_canvas2d.h>
+

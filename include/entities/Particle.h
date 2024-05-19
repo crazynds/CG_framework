@@ -8,6 +8,10 @@
 #include <entities/Ball.h>
 #include <Color.h>
 
+/**
+ * Essa entidade é uma particula que vai viver na tela por um curto periodo de vida
+ */
+
 class Particle : public Entity
 {
 private:

@@ -8,6 +8,10 @@
 #include <entities/Ball.h>
 #include <Matrix3.h>
 
+/**
+ * Essa entidade é o canhão que faz o disparo da bolinha
+ */
+
 class Canon : public Entity
 {
 private:

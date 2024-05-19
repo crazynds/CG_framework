@@ -34,6 +34,7 @@ void Map::render()
     CV::color(WHITE);
     Vector2d start = {100, 220};
     Vector2d blockSize = Vector2d(BLOCK_SIZE, BLOCK_SIZE);
+    int oldseed = rand();
     for (int x = 0; x < maxX; x++)
     {
         for (int y = 0; y < maxY; y++)
@@ -64,6 +65,7 @@ void Map::render()
         start.x += BLOCK_SIZE;
         start.y = 220;
     }
+    srand(oldseed);
 }
 int orientation(Vector2d p, Vector2d q, Vector2d r)
 {
@@ -286,7 +288,6 @@ Vector2d Map::checkColision(EngineState *state, Vector2d ballPos, Vector2d ballV
     if (draw)
         return {0, 0};
 
-    srand(time(nullptr));
     for (std::pair<int, int> check : colisoes)
     {
         switch (map[check.first][check.second])
@@ -354,8 +355,6 @@ bool Map::addLayer()
         if (map[i][0] > 0)
             map[i][0] = 0;
     }
-
-    srand(time(nullptr));
 
     // desce um nivel todos os blocos do mapa atual
     for (int i = 0; i < maxX; i++)

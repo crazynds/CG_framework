@@ -7,6 +7,10 @@
 
 #define BLOCK_SIZE 40
 
+/**
+ * Essa entidade é mapa dos quadradinhos e que faz a verificação de colisão
+ */
+
 class Map : public Entity
 {
 private:

@@ -4,6 +4,10 @@
 #include <entities/Entity.h>
 #include <gl_canvas2d.h>
 
+/**
+ * Entidade que representa um quadrado na tela.
+ */
+
 class Square : public Entity
 {
 private:
