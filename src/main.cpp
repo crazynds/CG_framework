@@ -15,19 +15,15 @@
 
 /**
  * O que foi implementado:
- *    -Carregar imagens colorida (RGB) em formato BMP. Utilize imagens retangulares pequenas
- * (entre 200 e 300 pixels) para facilitar a exibição dentro da canvas2D.
- *    -Mover cada imagem individualmente dentro da canvas2D com uso do mouse. Deve-se ter o
- * conceito de imagem corrente selecionada para que sejam aplicados processamentos sobre
- * ela. Pode-se indicar a imagem selecionada com uma moldura. A imagem selecionada deve
- * aparecer na frente das outras.
- *    -Reexibir a imagem selecionada, nos canais RGB e Luminancia.
- *    -Rotacionar a imagem no eixo vertical e horizontal.
- *    -Plotar o histograma de cada canal RGB e da luminância.
- *
- * Bonus implementado:
- *    -Aplicar uma rotação qualquer a imagem. A rotação deve ser feita com o uso do mouse.
- *
+ *    - Classes em C++ para definição de vetores
+ *    - Sistema do controle do canhão
+ *    - Sistema de movimentação do projétil.
+ *    - Colisão do projétil com os alvos
+ *    - Controle de FPS (controle real da velocidade da animação) (DE FORMA ESTÁTICA NO CÓDIGO, PODE SER ALTERADO NO DEFINE)
+ *    - Explosões com partículas
+ *    - Powerups
+ *    - Formas de interação dos projéteis com os cantos dos quadrados.
+ *    - Tela que se mexe de acordo com a posição. (Poderia dar uns 3 pontos né?)
  */
 
 #include <GL/glut.h>
