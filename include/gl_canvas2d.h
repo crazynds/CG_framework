@@ -18,6 +18,7 @@
 #define Y_CANVAS_CRESCE_PARA_CIMA 1
 
 extern int screenWidth, screenHeight;
+extern int currentScreenWidth, currentScreenHeight;
 
 class CV // classe Canvas2D
 {
@@ -40,6 +41,8 @@ public:
     // desenha um poligono CONVEXO. Para um retangulo, deve-se passar 4 vertices
     static void polygon(float vx[], float vy[], int n_elems);
     static void polygonFill(float vx[], float vy[], int n_elems);
+    static void polygon(Vector2d points[], int n_elems);
+    static void polygonFill(Vector2d points[], int n_elems);
 
     // centro e raio do circulo
     static void circle(float x, float y, float radius, int div);
@@ -68,6 +71,8 @@ public:
     // coordenada de offset para desenho de objetos.
     static void translate(float x, float y);
     static void translate(Vector2d pos);
+
+    static void focusWindows(Vector2i pos);
 
     // funcao de inicializacao da Canvas2D. Recebe a largura, altura, e um titulo para a janela
     static void init(int w, int h, const char *title);

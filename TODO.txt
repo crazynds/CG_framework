@@ -1,6 +1,3 @@
--Fazer componente de grafico
--Plotar grafico de histograma
--Adicionar comentários nos códigos
--Ajustar para compilar no codeblocks 
-
-
+-Gerar mapa sozinho por layers (A cada 3 jogadas gera um novo layer)
+-Destruir os blocos 
+-Particulas

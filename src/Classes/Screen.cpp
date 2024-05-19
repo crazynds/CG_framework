@@ -36,7 +36,7 @@ int Screen::tick(EngineState *state, double delta)
         for (auto i = entities.begin(); i != entities.end(); i++)
         {
             (*i)->entityName(buffer);
-            printf("%s\n", buffer);
+            printf("[DEBUG]%s\n", buffer);
         }
     }
     return TICK_OK;

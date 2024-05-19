@@ -40,57 +40,45 @@
 #include <gl_canvas2d.h>
 #include <EngineState.h>
 #include <Scenes.h>
+#include <Matrix3.h>
+#include <windows.h>
+
+#define MAX_FPS 35
 
 unsigned long long int step = 0;
 std::chrono::time_point<std::chrono::system_clock> lastTime;
 
 EngineState *globalState;
 
-
-// void segueMouse()
-// {
-//    step += 1;
-//    if (lastMouseX > 0 && lastMouseY > 0)
-//    {
-//       int xDiff = lastMouseX - screenWidth / 2;
-//       lastMouseX = -1;
-//       int yDiff = screenHeight / 2 - lastMouseY;
-//       lastMouseY = -1;
-//       printf("DIFF: %d %d\n", xDiff, yDiff);
-//       windowX += xDiff / 3;
-//       windowY += yDiff / 3;
-//       windowX = std::min(windowX, 1920 - screenWidth);
-//       if (windowX < 0)
-//          windowX = 0;
-//       windowY = std::min(windowY, 1024 - screenHeight);
-//       if (windowY < 0)
-//          windowY = 0;
-//    }   
-//    glutPositionWindow(windowX, windowY);
-// }
-
-
-void tick(){
+void tick()
+{
+   const double MIN_DELTA = 1000.0 / MAX_FPS;
    auto now = std::chrono::system_clock::now();
    double delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime).count();
-   delta /= 1000.0;
+   if (delta < MIN_DELTA)
+   {
+      Sleep(MIN_DELTA - delta);
+      now = std::chrono::system_clock::now();
+      delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime).count();
+   }
    lastTime = now;
+   delta /= 1000.0;
    globalState->tick(delta);
+
+   // Even with max fps, delay some time to update screen position;
+   Sleep(5);
 }
 
-void draw(){
+void draw()
+{
    // Clear screen
-   CV::clear(WHITE.r, WHITE.g, WHITE.b);
+   CV::clear(BLACK.r, BLACK.g, BLACK.b);
    CV::translate(0, 0);
 
-   CV::color(BLACK);
-   CV::text(20, 500, "Programa Demo Canvas2D");
-
-   CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
-   CV::textf(10, 320, "Screen: (%d,%d)", screenWidth, screenHeight);
+   //   CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
+   //   CV::textf(10, 320, "Screen: (%d,%d)", screenWidth, screenHeight);
    globalState->render();
 }
-
 
 void render()
 {
@@ -99,7 +87,8 @@ void render()
    draw();
 }
 
-void end(){
+void end()
+{
    delete globalState;
    exit(0);
 }
@@ -120,8 +109,8 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 int main(void)
 {
    globalState = new EngineState();
-   CV::init(screenWidth, screenHeight, "Trabalho 1");
-   globalState->setMainEntity(generateScene1());
+   CV::init(screenWidth, screenHeight, "Trabalho 2: Quadrados secretos");
+   globalState->setMainEntity(generateScene2());
    lastTime = std::chrono::system_clock::now();
    CV::run();
 }

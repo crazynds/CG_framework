@@ -11,8 +11,12 @@
 #include "Vector2.h"
 #include <stdio.h>
 #include <list>
+#include <GL/glut.h>
+
+#define CONST_WINDOW_DIFF 80
 
 extern int screenWidth, screenHeight;
+extern int currentScreenWidth, currentScreenHeight;
 
 class Entity;
 
@@ -35,6 +39,7 @@ private:
         mouseY = 0;
     int lastReadMouseX = -1, lastReadMouseY = -1;
     int mouseButton, mouseState, mouseWheel;
+    double avgDelta = 1;
     // Keyboard variables
     bool keyboard[256] = {false};
 
@@ -51,6 +56,8 @@ private:
 
     Entity *focusedEntity = 0;
 
+    Vector2i windowPosition = {0, 0};
+
 public:
     void render();
 
@@ -60,17 +67,27 @@ public:
     {
         keyboard[key] = state;
     }
+
+    void clearClick()
+    {
+        this->mouseHandler(-2, -3, -2, -2, mouseX, mouseY);
+        clicking = false;
+    }
     void mouseHandler(int button, int state, int wheel, int direction, int x, int y)
     {
         mouseButton = button;
         mouseState = state;
         mouseWheel = wheel;
+
         if (state == 0)
             clicking = true;
         if (state == 1)
             clicking = false;
-        mouseX = x;
-        mouseY = y;
+        if (x != -1 && y != -1)
+        {
+            mouseX = x;
+            mouseY = y;
+        }
         lastReadMouseX = x;
         lastReadMouseY = y;
     }
@@ -83,8 +100,8 @@ public:
             event.mouseButton = button;
             event.mouseState = state;
             event.mouseWheel = wheel;
-            event.mouseX = x;
-            event.mouseY = y;
+            event.mouseX = x + windowPosition.x;
+            event.mouseY = y + windowPosition.y - screenHeight - CONST_WINDOW_DIFF;
             mouseEvents.push_back(event);
             this->lock = false;
         }
@@ -94,14 +111,19 @@ public:
     {
         return {screenWidth, screenHeight};
     }
+    Vector2i getWindowPosition()
+    {
+        // return {glutGet((GLenum)GLUT_WINDOW_X), currentScreenHeight - screenHeight - glutGet((GLenum)GLUT_WINDOW_Y)};
+        return {windowPosition.x, windowPosition.y - screenHeight};
+    }
 
     Vector2i getMousePosition()
     {
-        return {mouseX, mouseY};
+        return Vector2i(mouseX, mouseY);
     }
     Vector2i getExactLastReadedMousePosition()
     {
-        return {lastReadMouseX, lastReadMouseY};
+        return Vector2i(lastReadMouseX, lastReadMouseY);
     }
 
     int getMouseButton()
@@ -153,8 +175,10 @@ public:
 
     bool isDebugTick()
     {
-        return sumTime - lastDebugTime > 2;
+        return sumTime - lastDebugTime > 10;
     }
+
+    void setWindowFocus(Vector2i pos);
 };
 
 #endif

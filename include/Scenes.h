@@ -9,5 +9,6 @@
 #include <entities/Entity.h>
 
 Entity *generateScene1();
+Entity *generateScene2();
 
 #endif

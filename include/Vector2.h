@@ -1,6 +1,8 @@
 #ifndef __VECTOR_2_H__
 #define __VECTOR_2_H__
 
+#include <math.h>
+
 template <class T>
 class Vector2
 {
@@ -24,7 +26,12 @@ public:
         y = _y;
     }
 
-    void normalize()
+    float size()
+    {
+        return (float)sqrt(x * x + y * y);
+    }
+
+    float normalize()
     {
         float norm = (float)sqrt(x * x + y * y);
 
@@ -32,10 +39,11 @@ public:
         {
             x = 1;
             y = 1;
-            return;
+            return norm;
         }
         x /= norm;
         y /= norm;
+        return norm;
     }
 
     Vector2<T> operator-(const Vector2<T> &v)
@@ -70,11 +78,23 @@ public:
         return *this;
     }
 
-    Vector2<T> *operator*=(const T &v)
+    Vector2<T> &operator*=(const T &v)
     {
         this->x *= v;
         this->y *= v;
         return *this;
+    }
+
+    // Produto escalar (dot product)
+    double dot(const Vector2<T> &v) const
+    {
+        return x * v.x + y * v.y;
+    }
+
+    // Produto vetorial (cross product)
+    double cross(const Vector2<T> &v) const
+    {
+        return x * v.y - y * v.x;
     }
 
     // Adicionem os demais overloads de operadores aqui.
@@ -85,6 +105,7 @@ class Vector2i : public Vector2<int>
 public:
     Vector2i() : Vector2() {}
     Vector2i(int x, int y) : Vector2(x, y) {}
+    Vector2i(Vector2<int> vec) : Vector2(vec.x, vec.y) {}
 };
 class Vector2f : public Vector2<float>
 {

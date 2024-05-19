@@ -8,6 +8,7 @@ all: canvas2d.exe
 	cd .. && gdb canvas2d.exe
 
 run: canvas2d.exe
+	mv canvas2d.exe ../
 	cd .. && ./canvas2d.exe
 
 clear:
