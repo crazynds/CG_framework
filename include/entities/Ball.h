@@ -26,6 +26,11 @@ public:
 
     virtual int tick(EngineState *state, double delta);
     virtual void render();
+
+    virtual void entityName(char *buffer)
+    {
+        sprintf(buffer, "Ball");
+    };
 };
 
 #endif

@@ -150,6 +150,17 @@ Vector2d Map::checkColision(EngineState *state, Vector2d ballPos, Vector2d ballV
             ballVelocity *= vel;
         }
     }
+    Vector2d colisions[][2] = {
+        {{0.08, 0}, {0.92, 0}},
+        {{0.08, 1}, {0.92, 1}},
+        {{0, 0.08}, {0, 0.92}},
+        {{1, 0.08}, {1, 0.92}},
+        {{0, 0.08}, {0.08, 0}},
+        {{0, 0.92}, {0.08, 1}},
+        {{0.92, 0}, {1, 0.08}},
+        {{0.92, 1}, {1, 0.92}},
+    };
+    Vector2d shift = {100, 220};
 
     do
     {
@@ -171,109 +182,46 @@ Vector2d Map::checkColision(EngineState *state, Vector2d ballPos, Vector2d ballV
                 ballVelocity = reflect(ballVelocity, normal);
             }
         }
-
-        std::pair<int, int> checks2[] = {
-            {1, 0},
-            {0, 1},
-            {-1, 0},
-            {0, -1},
-            {2, 0},
-            {0, 2},
-            {-2, 0},
-            {0, -2},
-            {1, 1},
-            {1, -1},
-            {-1, 1},
-            {-1, -1},
-        };
-
-        for (std::pair<int, int> check : checks2)
+        for (int xb = -1; xb <= 1; xb++)
         {
+            for (int yb = -1; yb <= 1; yb++)
+            {
+                if (colided)
+                    break;
+                int xa = xb + x;
+                int ya = yb + y;
+                if (xa < 0 || xa >= maxX || ya < 0 || ya >= maxY || map[xa][ya] == 0)
+                    continue;
+
+                for (auto colision : colisions)
+                {
+                    Vector2d first = shift + Vector2d(xa, (ya + 1)) * BLOCK_SIZE + colision[0] * BLOCK_SIZE;
+                    Vector2d second = shift + Vector2d(xa, (ya + 1)) * BLOCK_SIZE + colision[1] * BLOCK_SIZE;
+                    if (draw)
+                    {
+                        CV::line(first, second);
+                    }
+                    else
+                    {
+                        if (doIntersect(first, second, ballPos, ballPos + ballVelocity))
+                        {
+                            Vector2d line = second - first;
+                            Vector2d normal = Vector2d(-line.y, line.x);
+                            normal.normalize();
+                            ballVelocity = reflect(ballVelocity, normal);
+                            if (map[xa][ya] > 0 || map[xa][ya] < -1)
+                                colisoes.insert(std::make_pair(xa, ya));
+
+                            colided = true;
+                            break;
+                        }
+                    }
+                }
+                if (colided)
+                    break;
+            }
             if (colided)
                 break;
-            int xa = check.first + x;
-            int ya = check.second + y;
-            if (xa < 0 || xa >= maxX || ya < 0 || ya >= maxY || map[xa][ya] == 0)
-                continue;
-
-            Vector2d first = Vector2d(xa * BLOCK_SIZE + 100.0, (ya + 1) * BLOCK_SIZE + 220.0);
-            Vector2d second = Vector2d((xa + 1) * BLOCK_SIZE + 100.0, (ya + 2) * BLOCK_SIZE + 220.0);
-
-            if (check.first == 1 && check.second == 1)
-            {
-                first += {BLOCK_SIZE, 0};
-                second -= {BLOCK_SIZE, 0};
-
-                first += {-BLOCK_SIZE * 0.85, -BLOCK_SIZE * 0.10};
-                second += {-BLOCK_SIZE * 0.10, -BLOCK_SIZE * 0.85};
-            }
-            else if (check.first == 1 && check.second == -1)
-            {
-                first += {-BLOCK_SIZE * 0.10, BLOCK_SIZE * 0.85};
-                second += {-BLOCK_SIZE * 0.85, BLOCK_SIZE * 0.10};
-            }
-            else if (check.first == -1 && check.second == 1)
-            {
-                first += {BLOCK_SIZE * 0.85, -BLOCK_SIZE * 0.10};
-                second += {BLOCK_SIZE * 0.10, -BLOCK_SIZE * 0.85};
-            }
-            else if (check.first == -1 && check.second == -1)
-            {
-                first += {BLOCK_SIZE, 0};
-                second -= {BLOCK_SIZE, 0};
-
-                first += {BLOCK_SIZE * 0.10, BLOCK_SIZE * 0.85};
-                second += {BLOCK_SIZE * 0.85, BLOCK_SIZE * 0.10};
-            }
-            else if (check.first > 0)
-            {
-                second -= {BLOCK_SIZE, 0};
-                first.y -= BLOCK_SIZE * 0.1;
-                second.y += BLOCK_SIZE * 0.1;
-                first -= {1, 0};
-                second -= {1, 0};
-            }
-            else if (check.first < 0)
-            {
-                first += {BLOCK_SIZE, 0};
-                first.y -= BLOCK_SIZE * 0.1;
-                second.y += BLOCK_SIZE * 0.1;
-                first += {1, 0};
-                second += {1, 0};
-            }
-            else if (check.second > 0)
-            {
-                second -= {0, BLOCK_SIZE};
-                first.x -= BLOCK_SIZE * 0.1;
-                second.x += BLOCK_SIZE * 0.1;
-                first -= {0, 1};
-                second -= {0, 1};
-            }
-            else if (check.second < 0)
-            {
-                first += {0, BLOCK_SIZE};
-                first.x -= BLOCK_SIZE * 0.1;
-                second.x += BLOCK_SIZE * 0.1;
-                first += {0, 1};
-                second += {0, 1};
-            }
-            if (draw)
-            {
-                CV::line(first, second);
-            }
-            else
-            {
-                if (doIntersect(first, second, ballPos, ballPos + ballVelocity))
-                {
-                    Vector2d line = second - first;
-                    Vector2d normal = Vector2d(-line.y, line.x);
-                    normal.normalize();
-                    ballVelocity = reflect(ballVelocity, normal);
-                    colided = true;
-                    if (map[xa][ya] > 0 || map[xa][ya] < -1)
-                        colisoes.insert(std::make_pair(xa, ya));
-                }
-            }
         }
         if (colided == true)
         {

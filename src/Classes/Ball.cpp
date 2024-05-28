@@ -25,21 +25,18 @@ int Ball::tick(EngineState *state, double delta)
         map = (Map *)(state->getFocusedEntity());
         if (map != nullptr)
         {
-            Vector2d mov = moviment * (delta + 0.01);
-            float dif = mov.size();
-            if (dif > radius)
+            double fragments = 10;
+            Vector2d mov = moviment * delta * (1 / fragments);
+            Vector2d pos = getPosition();
+
+            for (int i = 0; i < fragments; i++)
             {
-                dif = 1 / (delta + 0.01);
+                mov = map->checkColision(state, pos, mov);
+                pos += mov;
             }
-            else
-            {
-                mov.normalize();
-                mov *= radius;
-                dif = 1 / (delta + 0.01) * (dif / radius);
-            }
-            moviment = map->checkColision(state, getPosition(), mov) * dif;
+            moviment = mov * fragments * (1 / delta);
+            setPosition(pos);
         }
-        translate(moviment * delta);
 
         particle -= delta;
         if (particle < 0)
