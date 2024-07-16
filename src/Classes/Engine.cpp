@@ -286,7 +286,7 @@ void Engine::render()
     rotation.addScaleMatrix(this->zoom, this->zoom, this->zoom);
     rotation.push();
     rotation.addTranslateMatrix({0, -30, 0});
-    if (this->perspective)
+    if (this->perspective && !this->only2d)
     {
         rotation.addTranslateMatrix({0, 0, 300});
         rotation.push();
