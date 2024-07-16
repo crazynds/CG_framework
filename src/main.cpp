@@ -39,7 +39,7 @@
 #include <Matrix3.h>
 #include <windows.h>
 
-#define MAX_FPS 35
+#define MAX_FPS 60
 
 unsigned long long int step = 0;
 std::chrono::time_point<std::chrono::system_clock> lastTime;
@@ -68,7 +68,7 @@ void tick()
 void draw()
 {
    // Clear screen
-   CV::clear(BLACK.r, BLACK.g, BLACK.b);
+   CV::clear(WHITE.r, WHITE.g, WHITE.b);
    CV::translate(0, 0);
 
    //   CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
@@ -76,6 +76,7 @@ void draw()
    globalState->render();
 }
 
+float tickNum = 0;
 void render()
 {
    tick();
@@ -105,8 +106,8 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 int main(void)
 {
    globalState = new EngineState();
-   CV::init(screenWidth, screenHeight, "Trabalho 2: Quadrados secretos");
-   globalState->setMainEntity(generateScene2());
+   CV::init(screenWidth, screenHeight, "Trabalho 3: Engine 2d/3d");
+   globalState->setMainEntity(generateScene3());
    lastTime = std::chrono::system_clock::now();
    CV::run();
 }

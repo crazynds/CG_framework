@@ -99,7 +99,7 @@ public:
             MouseEvent event;
             event.mouseButton = button;
             event.mouseState = state;
-            event.mouseWheel = wheel;
+            event.mouseWheel = direction;
             event.mouseX = x + windowPosition.x;
             event.mouseY = y + windowPosition.y - screenHeight - CONST_WINDOW_DIFF;
             mouseEvents.push_back(event);
@@ -129,6 +129,10 @@ public:
     int getMouseButton()
     {
         return mouseButton;
+    }
+    int getMouseWheel()
+    {
+        return mouseWheel;
     }
     int getMouseState()
     {
@@ -175,7 +179,8 @@ public:
 
     bool isDebugTick()
     {
-        return sumTime - lastDebugTime > 10;
+        // Disabled
+        return sumTime - lastDebugTime > 10 && false;
     }
 
     void setWindowFocus(Vector2i pos);

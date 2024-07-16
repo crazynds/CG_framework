@@ -8,12 +8,13 @@ int currentScreenWidth = 1080, currentScreenHeight = 1080;
 void EngineState::render()
 {
     frame += 1;
+
     CV::translate(-windowPosition.x, -windowPosition.y + CONST_WINDOW_DIFF + screenHeight);
     if (mainEntity)
         mainEntity->render();
 
-    CV::textf(10, 10, "Time: %.1fs", sumTime);
     CV::translate(0, 0);
+    CV::textf(10, 10, "Time: %.1fs", sumTime);
     CV::textf(screenWidth - 100, screenHeight - 20, "FPS: %d", (int)floor(1 / avgDelta));
 }
 

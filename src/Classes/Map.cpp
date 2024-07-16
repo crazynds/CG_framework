@@ -250,7 +250,7 @@ Vector2d Map::checkColision(EngineState *state, Vector2d ballPos, Vector2d ballV
             for (int x = 0; x < 2 + (rand() % 4); x++)
             {
                 double rotation = 2 * PI * ((rand() % 256) / 256.0);
-                Matrix3<double> rot = Matrix3<double>::rotation(rotation);
+                Matrix3<double> rot = Matrix3<double>::rotationZ(rotation);
                 Vector2d aux = rot * mov;
                 Ball *b = new Ball();
                 b->moving = true;
@@ -279,7 +279,7 @@ Vector2d Map::checkColision(EngineState *state, Vector2d ballPos, Vector2d ballV
             for (int x = 0; x < 13; x++)
             {
                 double rotation = 2 * PI * ((rand() % 256) / 256.0);
-                Matrix3<double> rot = Matrix3<double>::rotation(rotation);
+                Matrix3<double> rot = Matrix3<double>::rotationZ(rotation);
                 Vector2d aux = rot * mov;
                 screen->addEntity(
                     new Particle(

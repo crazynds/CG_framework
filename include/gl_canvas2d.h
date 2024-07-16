@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <iostream>
 #include <string.h>
 
 #include <GL/glut.h>
@@ -19,6 +20,7 @@
 
 extern int screenWidth, screenHeight;
 extern int currentScreenWidth, currentScreenHeight;
+using namespace std;
 
 class CV // classe Canvas2D
 {

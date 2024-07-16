@@ -10,5 +10,6 @@
 
 Entity *generateScene1();
 Entity *generateScene2();
+Entity *generateScene3();
 
 #endif

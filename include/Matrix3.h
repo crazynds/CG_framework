@@ -1,7 +1,8 @@
-#ifndef __MATRIX_2_H__
-#define __MATRIX_2_H__
+#ifndef __MATRIX_3_H__
+#define __MATRIX_3_H__
 
 #include <Vector2.h>
+#include <Vector3.h>
 #include <vector>
 #include <math.h>
 #include <string.h>
@@ -47,7 +48,7 @@ public:
         mat.m[2][2] = 1;
         return mat;
     }
-    static Matrix3 rotation(T angle)
+    static Matrix3 rotationZ(T angle)
     {
         Matrix3 mat = Matrix3();
         mat.m[0][0] = cos(angle);
@@ -57,6 +58,28 @@ public:
         mat.m[2][2] = 1;
         return mat;
     }
+
+    static Matrix3 rotationY(T angle)
+    {
+        Matrix3 mat = Matrix3();
+        mat.m[0][0] = cos(angle);
+        mat.m[0][2] = -sin(angle);
+        mat.m[2][0] = sin(angle);
+        mat.m[2][2] = cos(angle);
+        mat.m[1][1] = 1;
+        return mat;
+    }
+
+    static Matrix3 rotationX(T angle)
+    {
+        Matrix3 mat = Matrix3();
+        mat.m[1][1] = cos(angle);
+        mat.m[1][2] = -sin(angle);
+        mat.m[2][1] = sin(angle);
+        mat.m[2][2] = cos(angle);
+        mat.m[0][0] = 1;
+        return mat;
+    }
     static Matrix3 translation(T x, T y)
     {
         Matrix3 mat = Matrix3::identity();
@@ -64,11 +87,12 @@ public:
         mat.m[1][2] = y;
         return mat;
     }
-    static Matrix3 scale(T x, T y)
+    static Matrix3 scale(T x, T y, T z)
     {
         Matrix3 mat = Matrix3::identity();
         mat.m[0][0] = x;
         mat.m[1][1] = y;
+        mat.m[2][2] = z;
         return mat;
     }
     Matrix3<T> &operator+=(const Matrix3<T> &mat)
@@ -134,6 +158,19 @@ public:
         }
         return Vector2<T>(val2[0] / val2[2], val2[1] / val2[2]);
     }
+    Vector3<T> operator*(const Vector3<T> &vet)
+    {
+        T val[3] = {vet.x, vet.y, vet.z};
+        T val2[3] = {0, 0, 0};
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                val2[x] += m[x][y] * val[y];
+            }
+        }
+        return Vector3<T>(val2[0], val2[1], val2[2]);
+    }
     Matrix3<T> operator*=(const Matrix3<T> &mat)
     {
         Matrix3<T> val = Matrix3<T>();
@@ -195,12 +232,17 @@ public:
 
     void addScaleMatrix(T x, T y)
     {
-        addMultMatrix(Matrix3<T>::scale(x, y));
+        addMultMatrix(Matrix3<T>::scale(x, y, 1));
+    }
+
+    void addScaleMatrix(T x, T y, T z)
+    {
+        addMultMatrix(Matrix3<T>::scale(x, y, z));
     }
 
     void addRotateMatrix(T angle)
     {
-        addMultMatrix(Matrix3<T>::rotation(angle));
+        addMultMatrix(Matrix3<T>::rotationZ(angle));
     }
 
     void addTranslateMatrix(T x, T y)
@@ -227,6 +269,15 @@ public:
     }
 
     Vector2<T> compute(Vector2<T> vec)
+    {
+        for (Matrix3<T> x : transformation)
+        {
+            vec = x * vec;
+        }
+        return vec;
+    }
+
+    Vector3<T> compute(Vector3<T> vec)
     {
         for (Matrix3<T> x : transformation)
         {
