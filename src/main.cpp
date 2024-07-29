@@ -33,7 +33,6 @@
 #include <stdlib.h>
 #include <chrono>
 
-#include <gl_canvas2d.h>
 #include <EngineState.h>
 #include <Scenes.h>
 #include <Matrix3.h>
@@ -62,26 +61,28 @@ void tick()
    globalState->tick(delta);
 
    // Even with max fps, delay some time to update screen position;
-   Sleep(5);
+   // Sleep(5);
 }
 
 void draw()
 {
    // Clear screen
-   CV::clear(WHITE.r, WHITE.g, WHITE.b);
-   CV::translate(0, 0);
-
-   //   CV::textf(10, 300, "Mouse: (%d,%d)", globalState->getMousePosition().x, globalState->getMousePosition().y);
-   //   CV::textf(10, 320, "Screen: (%d,%d)", screenWidth, screenHeight);
    globalState->render();
 }
 
 float tickNum = 0;
 void render()
 {
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+
    tick();
 
    draw();
+
+   glutSwapBuffers();
 }
 
 void end()
@@ -89,13 +90,13 @@ void end()
    delete globalState;
    exit(0);
 }
-void keyboard(int key)
+void keyboard(unsigned char key, int, int)
 {
    if (key == 27)
       end();
    globalState->keyboardHandler(key, true);
 }
-void keyboardUp(int key)
+void keyboardUp(unsigned char key, int, int)
 {
    globalState->keyboardHandler(key, false);
 }
@@ -103,11 +104,59 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 {
    globalState->mouseHandlerAsync(button, state, wheel, direction, x, y);
 }
+void mouseClick(int button, int state, int x, int y)
+{
+   mouse(button, state, -2, -2, x, screenHeight - y);
+}
+void motion(int x, int y)
+{
+   mouse(-2, -2, -2, -2, x, screenHeight - y);
+}
 int main(void)
 {
+   int argc = 0;
+   glutInit(&argc, NULL);
+
+   // glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
+   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+
+   glutInitWindowSize(screenWidth, screenHeight);
+   glutInitWindowPosition(450, 10);
+   /* create window */
+   glutCreateWindow("Trabalho 5: Mapa 3d");
+
+   /* init */
+   float abertura = 20.0;
+   float znear = 1;
+   float zfar = 23;
+   float aspect = 1;
+   glEnable(GL_DEPTH_TEST);
+   glEnable(GL_MAP2_VERTEX_3);
+
    globalState = new EngineState();
-   CV::init(screenWidth, screenHeight, "Trabalho 3: Engine 2d/3d");
-   globalState->setMainEntity(generateScene3());
+   globalState->setMainEntity(generateScene4());
    lastTime = std::chrono::system_clock::now();
-   CV::run();
+
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluPerspective(abertura, aspect, znear, zfar);
+   glMatrixMode(GL_MODELVIEW);
+
+   glClearColor(0, 0, 0, 1);
+
+   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+   glEnable(GL_DEPTH_TEST);
+
+   glutDisplayFunc(render);
+   glutMouseFunc(mouseClick);
+   glutPassiveMotionFunc(motion);
+   glutMotionFunc(motion);
+   glutKeyboardFunc(keyboard);
+   glutKeyboardUpFunc(keyboardUp);
+   glutIdleFunc(render);
+
+   glutMainLoop();
+
+   return 0;
 }

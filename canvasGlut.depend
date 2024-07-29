@@ -545,3 +545,49 @@
 	<entities/Entity.h>
 	<gl_canvas2d.h>
 
+1716072136 source:h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\src\entities\clicableentity.cpp
+	<entities/ClicableEntity.h>
+
+1712620740 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\entities\clicableentity.h
+	<EngineState.h>
+	<entities/FocusedEntity.h>
+	<Vector2.h>
+
+1721106305 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\enginestate.h
+	"Vector2.h"
+	<stdio.h>
+	<list>
+	<GL/glut.h>
+
+1722233812 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\vector2.h
+	<math.h>
+
+1632060800 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\gl\glut.h
+	"freeglut_std.h"
+
+1632060798 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1712617232 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\entities\focusedentity.h
+	<entities/Entity.h>
+
+1712617176 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\entities\entity.h
+	<Vector2.h>
+	<Position.h>
+	<stdio.h>
+
+1712617082 h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\include\position.h
+	"Vector2.h"
+
+1712525232 source:h:\pendrive\ano - 2024\escola\1 semestre\computação grafica\cg - trab 4\src\entities\focusedentity.cpp
+	<entities/FocusedEntity.h>
+	<EngineState.h>
+

@@ -26,7 +26,7 @@ public:
         y = _y;
     }
 
-    float size()
+    float size() const
     {
         return (float)sqrt(x * x + y * y);
     }
@@ -95,6 +95,15 @@ public:
     double cross(const Vector2<T> &v) const
     {
         return x * v.y - y * v.x;
+    }
+
+    float angleWith(const Vector2<T> &other) const
+    {
+        float dotProduct = dot(other);
+        float magnitudes = size() * other.size();
+        float cosTheta = dotProduct / magnitudes;
+
+        return std::acos(cosTheta);
     }
 
     // Adicionem os demais overloads de operadores aqui.
